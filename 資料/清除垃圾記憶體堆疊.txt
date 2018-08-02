@@ -1,0 +1,20 @@
+            ///////////////////////////////////////////////////////////////////////////////////
+            //處裡記憶體堆疊[釋放垃圾記憶體]
+            new System.Threading.Thread(() =>
+            {
+                while (true)
+                {
+                    System.Threading.Thread.Sleep(5000);
+                    GC.Collect();
+                }
+            }).Start();
+            ///////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+GC.Collect();
+GC.WaitForPendingFinalizers();
+GC.Collect();

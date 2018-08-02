@@ -1,0 +1,2 @@
+SET storage_engine=MYISAM;
+ALTER TABLE table_name ENGINE = MyISAM;

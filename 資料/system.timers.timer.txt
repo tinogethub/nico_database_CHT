@@ -1,0 +1,45 @@
+using System.Threading;
+using ThreadingTimer = System.Threading.Timer;
+using TimersTimer = System.Timers.Timer;
+
+
+
+        ThreadingTimer _ThreadTimer = null;
+        TimersTimer _TimersTimer = null;
+
+private void Form1_Load(object sender, EventArgs e)
+        {
+          
+            //System.Timers.Timer使用方式
+            this._TimersTimer = new TimersTimer();
+            this._TimersTimer.Interval = 1000;
+            this._TimersTimer.Elapsed += new System.Timers.ElapsedEventHandler(SystemTimer_Elapsed);
+
+            //跨執行緒的錯誤處理
+            this._TimersTimer.SynchronizingObject = this;  //將要更新的Form類別丟進去
+
+            this._TimersTimer.Start();
+         }
+
+void SystemTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            Thread t = Thread.CurrentThread;
+            bool IsThreadPool = t.IsThreadPoolThread;
+            bool IsBackground = t.IsBackground;
+
+            string timeStr = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString(); ;
+            //StatusTime.Text = timeStr;
+
+            this.BeginInvoke(new UpdateControl(_mUpdateControl), new object[] { this.Mainstatus, timeStr });
+        }
+        delegate void UpdateControl(Control Ctrl, string Msg);
+        private object _objLock = new object();
+        void _mUpdateControl(Control Ctrl, string Msg)
+        {
+            lock (this._objLock)
+            {
+                if (Ctrl is StatusStrip)
+
+                    ((StatusStrip)Ctrl).Items[2].Text = Msg;
+            }
+        }

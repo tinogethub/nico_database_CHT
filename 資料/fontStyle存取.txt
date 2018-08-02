@@ -1,0 +1,6 @@
+Font font1 = new Font("Arial", 12, FontStyle.Italic);
+TypeConverter converter = TypeDescriptor.GetConverter(typeof(Font));
+// Saving Font object as a string
+string fontString = converter.ConvertToString(font1);
+// Load an instance of Font from a string
+Font font = (Font)converter.ConvertFromString(fontString);

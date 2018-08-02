@@ -1,0 +1,21 @@
+詢問高手後有三種方法解決：
+1.Form.CheckForIllegalCrossThreadCalls = False
+2.建立委派
+3.使用BackgroundWorker
+第一種方法，據說不安全，但我也不曉得哪裡不安全，但用起來還蠻方便的。
+第二種方法，比較正統使用委派的方式，若爾後需要改任何控制項的文字時(需有text屬性的)，呼叫 myU即可。
+  private delegate void myUICallBack(string myStr, Control ctl);
+  private void myUI(string myStr, Control ctl)
+  {
+  if (this.InvokeRequired)
+  {
+  myUICallBack myUpdate = new myUICallBack(myUI);
+  this.Invoke(myUpdate, myStr, ctl);
+  }
+  else
+  {
+  ctl.Text = myStr;
+  }
+  }
+
+第三種方法，使用BackgroundWorker，更強大的功能讓我們省去了上述繁雜的動作。

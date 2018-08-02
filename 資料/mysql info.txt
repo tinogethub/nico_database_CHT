@@ -1,0 +1,8 @@
+DQL PORT 3306
+MYSQL root password : root
+
+MYSQL Name : MySQL57
+
+user
+   name : meter
+   pass   : user

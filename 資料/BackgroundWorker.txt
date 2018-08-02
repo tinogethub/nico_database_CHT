@@ -1,0 +1,20 @@
+﻿BackgroundWorker
+
+透過RunWorkerAsync啟動
+
+共三個FUNCTION
+DoWork
+不可變動UI
+
+ProgressChanged
+處理進度更新的通知
+可變動UI
+
+RunWorkerCompleted 
+處理進度完成的通知
+可變動UI
+
+
+如果後臺操作需要參數，請在調用 RunWorkerAsync 時
+給出參數。 在 DoWork 事件處理常式內部，可以從 
+DoWorkEventArgs.Argument 屬性中提取該參數。

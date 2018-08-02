@@ -1,0 +1,22 @@
+Framwork 3.0之後 get 和 set 的使用方法
+類別(Class)寫法如下:
+
+public class MyClass{
+    //宣告自定義的字串變數(屬性)
+    public String Text1 { get; set; }
+    //宣告自定義的整數變數(屬性)
+    public int number { get; set; }
+    //初始化自定義類別
+    public MyClass()
+    {
+
+    }
+}
+
+使用方法如下:
+
+MyClass mc = new MyClass();
+mc.Text1 = "設定文字";
+String text = mc.Text1;//取得文字
+mc.number = 10;//設定整數
+int number = mc.number;//取得整數

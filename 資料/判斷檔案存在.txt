@@ -1,0 +1,8 @@
+if (System.IO.File.Exists("FileName"))
+{
+   //find
+}
+else
+{
+   //not found
+}

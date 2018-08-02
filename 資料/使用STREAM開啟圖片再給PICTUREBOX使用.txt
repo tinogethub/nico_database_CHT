@@ -1,0 +1,8 @@
+using System.IO;
+///////////////////////////
+
+FileStream fs = File.OpenRead(@"c:\a1.bmp");
+
+Bitmap bmp1 = (Bitmap)Image.FromStream(fs);
+
+fs.Close();
